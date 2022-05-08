@@ -1,5 +1,6 @@
 <style>
-  textarea, pre {
+  textarea,
+  pre {
     margin: 1em;
     padding: 0.25em;
     background-color: #ccc;
@@ -71,8 +72,7 @@ requirements:
 
 <h2>examples</h2>
 <p>the outputs in the examples below are calculated right here in your browser, using <code>taxsim.js</code></p>
-<div id="examples">
-</div>
+<div id="examples"></div>
 
 <script src="taxsim.js"></script>
 <script>
@@ -91,7 +91,8 @@ requirements:
     let ex = document.getElementById('examples')
     for (let x of examples) {
       let i = x.replace(/\n +/g, '\n')
-      let o = "", err
+      let o = '',
+        err
       try {
         o = await taxsim(i)
       } catch (e) {
@@ -103,7 +104,7 @@ requirements:
           <p>input:</p>
           <textarea spellcheck="false">${i}</textarea>
           <p>output:</p>
-          <pre class="output ${err ? "error" : ""}">${o}</pre>
+          <pre class="output ${err ? 'error' : ''}">${o}</pre>
         </div>
       `
     }
@@ -111,7 +112,8 @@ requirements:
 
   async function updateExample(e) {
     let input = e.target.value
-    let o = "", err
+    let o = '',
+      err
     try {
       o = await taxsim(input)
     } catch (e) {
@@ -121,13 +123,13 @@ requirements:
     console.log('update', {input, o})
     let pre = e.target.parentElement.querySelector('.output')
     pre.innerText = o
-    if (err)
-      pre.classList.add('error')
-    else
-      pre.classList.remove('error')
+    if (err) pre.classList.add('error')
+    else pre.classList.remove('error')
   }
 
-  calculateExamples().then(function() {
-    Array.from(document.querySelectorAll('#examples textarea')).forEach(tx => tx.onkeyup = tx.onchange = updateExample)
+  calculateExamples().then(function () {
+    Array.from(document.querySelectorAll('#examples textarea')).forEach(
+      tx => (tx.onkeyup = tx.onchange = updateExample)
+    )
   })
 </script>

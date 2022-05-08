@@ -34,10 +34,10 @@ async function taxsim(data) {
     noFSInit: true,
 
     print: function (o) {
-      out += o + "\n"
+      out += o + '\n'
     },
     printErr: function (o) {
-      err += o + "\n"
+      err += o + '\n'
     },
   })
 
@@ -53,8 +53,7 @@ async function taxsim(data) {
 
   //console.log('taxsim results', {out, err})
 
-  if (err)
-    throw err
+  if (err) throw err
 
   return out
 }
