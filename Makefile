@@ -5,3 +5,8 @@ taxsim.f.js: taxsim.f
 	docker cp taxsim-out:/app/taxsim.f.wasm .
 	docker rm -f taxsim-out
 	docker rmi -f taxsim-build
+
+prettier:
+	prettier -w demo.html taxsim.js
+
+.PHONY: prettier
