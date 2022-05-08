@@ -19,12 +19,9 @@ function loadScript(src) {
   })
 }
 
-let jsLoaded = false
-
 async function taxsim(data) {
-  if (!jsLoaded) {
+  if (!('loadTAXSIM' in window)) {
     await loadScript('taxsim.f.js')
-    jsLoaded = true
   }
 
   let out = ''
