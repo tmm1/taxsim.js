@@ -1,14 +1,19 @@
 <style>
-  pre {
+  textarea, pre {
     margin: 1em;
     padding: 0.25em;
     background-color: #ccc;
     min-height: 1em;
     overflow-x: auto;
+    font-size: 11pt;
+    font-family: monospace;
   }
   .example {
     padding-bottom: 1em;
     border-top: 1px dashed #888;
+  }
+  .example textarea {
+    width: 98%;
   }
   .example pre {
     border: 1px solid #999;
@@ -71,7 +76,7 @@ requirements:
 
 <script src="taxsim.js"></script>
 <script>
-  const inputs = [
+  const examples = [
     ``,
     `test`,
     `taxsimid,mstat,year,ltcg
@@ -82,9 +87,9 @@ requirements:
      1,2,1970,100000,5`,
   ]
 
-  async function calculateInputs() {
+  async function calculateExamples() {
     let ex = document.getElementById('examples')
-    for (let x of inputs) {
+    for (let x of examples) {
       let i = x.replace(/\n +/g, '\n')
       let o = "", err
       try {
@@ -96,12 +101,33 @@ requirements:
       ex.innerHTML += `
         <div class="example">
           <p>input:</p>
-          <pre class="input">${i}</pre>
+          <textarea spellcheck="false">${i}</textarea>
           <p>output:</p>
           <pre class="output ${err ? "error" : ""}">${o}</pre>
         </div>
       `
     }
   }
-  calculateInputs()
+
+  async function updateExample(e) {
+    let input = e.target.value
+    let o = "", err
+    try {
+      o = await taxsim(input)
+    } catch (e) {
+      err = e
+      o = e
+    }
+    console.log('update', {input, o})
+    let pre = e.target.parentElement.querySelector('.output')
+    pre.innerText = o
+    if (err)
+      pre.classList.add('error')
+    else
+      pre.classList.remove('error')
+  }
+
+  calculateExamples().then(function() {
+    Array.from(document.querySelectorAll('#examples textarea')).forEach(tx => tx.onkeyup = tx.onchange = updateExample)
+  })
 </script>
