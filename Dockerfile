@@ -6,7 +6,7 @@ RUN emcc \
     -s ERROR_ON_UNDEFINED_SYMBOLS=1 \
     -s EXPORTED_FUNCTIONS='[_main]' \
     -s MODULARIZE=1 \
-    -s 'EXPORT_NAME="loadTAXSIM"' \
+    -s EXPORT_NAME='"loadTAXSIM"' \
     -s EXTRA_EXPORTED_RUNTIME_METHODS='["callMain","FS"]' \
     -s EXIT_RUNTIME=1 \
-    -o taxsim.f.js taxsim.f.bc lib/libgfortran.a
+    -o taxsim.js taxsim.f.bc lib/libgfortran.a

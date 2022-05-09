@@ -9,7 +9,7 @@ Note: `taxsim.f` is not included, and must be obtained separately from the NBER.
 ### converting `taxsim.f` to WASM
 
 ```
-$ make taxsim.f.js
+$ make taxsim.js
 ```
 
 ### using `taxsim.js`
