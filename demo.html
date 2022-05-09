@@ -11,7 +11,6 @@
   }
   .example {
     padding-bottom: 1em;
-    border-top: 1px dashed #888;
   }
   .example textarea {
     width: 98%;
@@ -99,9 +98,9 @@ requirements:
       }
       ex.innerHTML += `
         <div class="example">
-          <p>input:</p>
+          <h4>input:</h4>
           <textarea spellcheck="false">${i}</textarea>
-          <p>output:</p>
+          <h4>output:</h4>
           <pre class="output ${err ? 'error' : ''}">${o}</pre>
         </div>
       `
