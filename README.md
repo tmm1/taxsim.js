@@ -12,8 +12,17 @@ Note: `taxsim.f` is not included, and must be obtained separately from the NBER.
 $ make taxsim.js
 ```
 
-the [`Makefile`](Makefile) uses docker and the [stargate01/f90wasm](https://hub.docker.com/r/stargate01/f90wasm) container to compile our fortran code. see the [`Dockerfile`](Dockerfile) for the build instructions.
+the [`Makefile`](Makefile) uses docker and the [stargate01/f90wasm](https://hub.docker.com/r/stargate01/f90wasm) container to compile our fortran code. see [`Dockerfile`](Dockerfile) for the build commands.
 
 ### using `taxsim.js`
+
+```typescript
+function taxsim(input: String): Promise
+```
+
+```js
+let input = "taxsimid,mstat,year,ltcg,idtl\n1,2,1970,100000,5"
+let output = await taxsim(input)
+```
 
 see [demo.html](demo.html)
