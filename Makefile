@@ -16,6 +16,6 @@ taxsim.js: taxsim.f wrapper.js
 	cat wrapper.js >> taxsim.js
 
 prettier:
-	prettier -w demo.html taxsim.js
+	prettier -w demo.html wrapper.js
 
 .PHONY: prettier
