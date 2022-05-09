@@ -1,6 +1,5 @@
 async function taxsim(data) {
   let out = ''
-  let err = ''
   let em = await loadTAXSIM({
     noInitialRun: true,
     noFSInit: true,
@@ -9,7 +8,7 @@ async function taxsim(data) {
       out += o + '\n'
     },
     printErr: function (o) {
-      err += o + '\n'
+      out += o + '\n'
     },
   })
 
@@ -21,11 +20,10 @@ async function taxsim(data) {
     return null
   }
   em.FS.init(stdin, null, null)
-  em.callMain()
 
-  //console.log('taxsim results', {out, err})
-
-  if (err) throw err
+  let exitCode = em.callMain()
+  //console.log('taxsim results', {exitCode, out})
+  if (exitCode !== undefined && exitCode != 0) throw out
 
   return out
 }
