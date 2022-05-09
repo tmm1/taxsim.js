@@ -69,6 +69,10 @@ requirements:
 &lt;/script>
 </pre>
 
+<h2>load file</h2>
+<p>load a CSV file for local processing</p>
+<input type="file" id="loadfile" multiple="false" accept="*.csv, *.txt" />
+
 <h2>examples</h2>
 <p>the outputs in the examples below are calculated right here in your browser, using <code>taxsim.js</code></p>
 <p>each example is interactive, so you can modify the input and the output will recompute</p>
@@ -126,6 +130,28 @@ requirements:
     if (err) pre.classList.add('error')
     else pre.classList.remove('error')
   }
+
+  function updateFile(e) {
+    if (!e.target.files) return
+
+    var fileReader = new FileReader()
+    fileReader.onload = async function (fileLoadedEvent) {
+      var input = fileLoadedEvent.target.result
+      let o = ''
+      try {
+        o = await taxsim(input)
+      } catch(e) {
+        o = e
+      }
+      window.open('', '_blank').document.write(`<pre>${o}</pre>`)
+      e.target.value = []
+    }
+
+    const file = e.target.files[0]
+    fileReader.readAsText(file, 'UTF-8')
+  }
+
+  document.querySelector('#loadfile').addEventListener('change', updateFile)
 
   calculateExamples().then(function () {
     Array.from(document.querySelectorAll('#examples textarea')).forEach(
