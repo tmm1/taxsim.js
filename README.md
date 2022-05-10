@@ -18,11 +18,17 @@ the [`Makefile`](Makefile) uses docker and the [stargate01/f90wasm](https://hub.
 
 ```typescript
 function taxsim(input: String): Promise
+function taxsim(input: Object): Promise
 ```
 
 ```js
 let input = "taxsimid,mstat,year,ltcg,idtl\n1,2,1970,100000,5"
 let output = await taxsim(input)
+let output = await taxsim({
+  year: 2020,
+  mstat: 2,
+  ltcg: 100000
+})
 ```
 
 see [demo.html](demo.html)

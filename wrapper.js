@@ -1,21 +1,38 @@
-async function taxsim(data) {
+async function taxsim(input) {
   let out = ''
   let em = await loadTAXSIM({
     noInitialRun: true,
     noFSInit: true,
   })
 
-  let i = 0
-  function stdin() {
-    if (i < data.length) {
-      return data.charCodeAt(i++)
+  let data
+  if (typeof input === 'string') {
+    data = input
+  } else if (typeof input === 'object') {
+    let keys = [],
+      vals = []
+    for (const k in input) {
+      keys.push(k)
+      vals.push(input[k])
     }
-    return null
+    data = keys.join(',') + '\n' + vals.join(',')
   }
-  function stdouterr(c) {
-    out += String.fromCharCode(c)
+
+  if (data !== undefined) {
+    let i = 0
+    function stdin() {
+      if (i < data.length) {
+        return data.charCodeAt(i++)
+      }
+      return null
+    }
+    function stdouterr(c) {
+      out += String.fromCharCode(c)
+    }
+    em.FS.init(stdin, stdouterr, stdouterr)
+  } else {
+    em.FS.init()
   }
-  em.FS.init(stdin, stdouterr, stdouterr)
 
   let exitCode = em.callMain()
   //console.log('taxsim results', {exitCode, out})

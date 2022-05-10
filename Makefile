@@ -13,7 +13,10 @@ taxsim.f:
 	@echo Place the file in this directory and re-run the command.
 	@exit 1
 
+test: taxsim.js
+	echo "year,mstat\n2020,2" | node -e "require('./taxsim.js')()"
+
 prettier:
 	prettier -w demo.html wrapper.js
 
-.PHONY: prettier
+.PHONY: prettier test

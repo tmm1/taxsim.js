@@ -45,14 +45,16 @@ requirements:
   // taxsim.js implements a function with the following prototype:
   //
   //    function taxsim(input: String): Promise
+  //    function taxsim(input: Object): Promise
   //
   // the returned promise can be manipulated either directly or via async/await
 
   // sample input
-  let input = ["taxsimid,mstat,year,ltcg,idtl", "1,2,1970,100000,5"].join("\n")
+  let input1 = ["taxsimid,mstat,year,ltcg,idtl", "1,2,1970,100000,5"].join("\n")
+  let input2 = {taxsimid: 1, mstat: 2, year: 1970, ltcg: 100000, idtl: 5}
 
   // promise api
-  taxsim(input).then(function(output) {
+  taxsim(input1).then(function(output) {
     console.log('taxsim output', output)
   }).catch(function(error) {
     console.log('taxsim failed', error)
@@ -60,7 +62,7 @@ requirements:
 
   // async/await api
   try {
-    let output = await taxsim(input)
+    let output = await taxsim(input2)
     console.log('taxsim output', output)
   } catch(error) {
     console.log('taxsim failed', error)
