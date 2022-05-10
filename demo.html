@@ -37,7 +37,7 @@ requirements:
   <li>place both files on a webserver</li>
   <li>include <code>taxsim.js</code> from an html page</li>
   <li>invoke the <code>taxsim()</code> javascript function</li>
-  <li>resolve the returned <code>Promise</code> to retrieve the <code>stdout</code>/<code>stderr</code> outputs</li>
+  <li>resolve the returned <code>Promise</code> to retrieve the output</li>
 </ol>
 <pre>
 &lt;script src="taxsim.js">&lt;/script>
@@ -53,17 +53,17 @@ requirements:
 
   // promise api
   taxsim(input).then(function(output) {
-    console.log('taxsim stdout', output)
+    console.log('taxsim output', output)
   }).catch(function(error) {
-    console.log('taxsim stderr', error)
+    console.log('taxsim failed', error)
   })
 
   // async/await api
   try {
     let output = await taxsim(input)
-    console.log('taxsim stdout', output)
+    console.log('taxsim output', output)
   } catch(error) {
-    console.log('taxsim stderr', error)
+    console.log('taxsim failed', error)
   }
 &lt;/script>
 </pre>
