@@ -8,7 +8,8 @@ async function taxsim(data) {
       out += o + '\n'
     },
     printErr: function (o) {
-      out += o + '\n'
+      if (o.match(/^wasm streaming compile failed|^falling back to ArrayBuffer/)) console.error(o)
+      else out += o + '\n'
     },
   })
 
