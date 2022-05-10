@@ -3,14 +3,6 @@ async function taxsim(data) {
   let em = await loadTAXSIM({
     noInitialRun: true,
     noFSInit: true,
-
-    print: function (o) {
-      out += o + '\n'
-    },
-    printErr: function (o) {
-      if (o.match(/^wasm streaming compile failed|^falling back to ArrayBuffer/)) console.error(o)
-      else out += o + '\n'
-    },
   })
 
   let i = 0
@@ -20,7 +12,10 @@ async function taxsim(data) {
     }
     return null
   }
-  em.FS.init(stdin, null, null)
+  function stdouterr(c) {
+    out += String.fromCharCode(c)
+  }
+  em.FS.init(stdin, stdouterr, stdouterr)
 
   let exitCode = em.callMain()
   //console.log('taxsim results', {exitCode, out})
