@@ -29,9 +29,9 @@ async function taxsim(data) {
   return out
 }
 
-if (typeof exports === 'object' && typeof module === 'object')
-  module.exports = taxsim;
+if (typeof exports === 'object' && typeof module === 'object') module.exports = taxsim
 else if (typeof define === 'function' && define['amd'])
-  define([], function() { return taxsim; });
-else if (typeof exports === 'object')
-  exports["taxsim"] = taxsim;
+  define([], function () {
+    return taxsim
+  })
+else if (typeof exports === 'object') exports['taxsim'] = taxsim
