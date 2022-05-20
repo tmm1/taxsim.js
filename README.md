@@ -31,4 +31,8 @@ let output = await taxsim({
 })
 ```
 
-see [demo.html](demo.html)
+see [demo.html (source)](demo.html) or the [live version](https://taxsim.nber.org/taxsim35/demo.html)
+
+### projects using `taxsim.js`
+
+- https://taxsim.app (https://github.com/tmm1/taxsim.app)
