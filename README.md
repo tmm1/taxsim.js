@@ -35,4 +35,4 @@ see [demo.html (source)](demo.html) or the [live version](https://taxsim.nber.or
 
 ### projects using `taxsim.js`
 
-- https://taxsim.app (https://github.com/tmm1/taxsim.app)
+- https://taxsim.app ([tmm1/taxsim.app](https://github.com/tmm1/taxsim.app))
