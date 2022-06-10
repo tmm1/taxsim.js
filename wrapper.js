@@ -1,8 +1,9 @@
-async function taxsim(input) {
+async function taxsim(input, opts) {
   let out = ''
   let em = await loadTAXSIM({
     noInitialRun: true,
     noFSInit: true,
+    ...opts,
   })
 
   let data
