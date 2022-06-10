@@ -31,7 +31,23 @@ let output = await taxsim({
 })
 ```
 
+#### in a browser
+
 see [demo.html (source)](demo.html) or the [live version](https://taxsim.nber.org/taxsim35/demo.html)
+
+#### via node.js
+
+powershell:
+
+```powershell
+> "year,mstat`n2020,2" | node -e "require('./taxsim.js')()"
+```
+
+bash:
+
+```bash
+$ printf "year,mstat\n2020,2" | node -e "require('./taxsim.js')()"
+```
 
 ### projects using `taxsim.js`
 
