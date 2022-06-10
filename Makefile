@@ -14,7 +14,7 @@ taxsim.f:
 	@exit 1
 
 test: taxsim.js
-	echo "year,mstat\n2020,2" | node -e "require('./taxsim.js')()"
+	printf "year,mstat\n2020,2" | node -e "require('./taxsim.js')()"
 
 prettier:
 	prettier -w demo.html wrapper.js
