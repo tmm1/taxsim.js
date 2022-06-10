@@ -9,5 +9,5 @@ RUN emcc \
     -s MODULARIZE=1 \
     -s EXPORT_NAME='"loadTAXSIM"' \
     -s EXPORTED_RUNTIME_METHODS='callMain,FS' \
-    -s EXIT_RUNTIME=1 \
+    -s ASSERTIONS=0 \
     -o taxsim.js taxsim.f.bc lib/libgfortran.a

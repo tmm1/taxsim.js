@@ -37,16 +37,24 @@ see [demo.html (source)](demo.html) or the [live version](https://taxsim.nber.or
 
 #### via node.js
 
+bash:
+
+```bash
+$ printf "year,mstat\n2020,2" | node -e "require('./taxsim.js')()"
+$ node --input-type=module -e "import taxsim from './taxsim.js'; console.log(await taxsim({year:2020,mstat:2}))"
+```
+
 powershell:
 
 ```powershell
 > "year,mstat`n2020,2" | node -e "require('./taxsim.js')()"
 ```
 
-bash:
+#### via libv8, or [d8](https://v8.dev/docs/d8)
 
 ```bash
-$ printf "year,mstat\n2020,2" | node -e "require('./taxsim.js')()"
+$ printf "year,mstat\n2020,2\n" | d8 -e "load('./taxsim.js'); taxsim()"
+$ d8 -e "load('./taxsim.js'); function quit(){}; taxsim({year:2020,mstat:2}).then(console.log).catch(console.log)"
 ```
 
 ### projects using `taxsim.js`

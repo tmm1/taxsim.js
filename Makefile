@@ -15,6 +15,8 @@ taxsim.f:
 
 test: taxsim.js
 	printf "year,mstat\n2020,2" | node -e "require('./taxsim.js')()"
+	@echo
+	node --input-type=module -e "import taxsim from './taxsim.js'; console.log(await taxsim({year:2020,mstat:2}))"
 
 prettier:
 	prettier -w demo.html wrapper.js

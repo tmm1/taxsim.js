@@ -15,7 +15,7 @@ async function taxsim(input) {
       keys.push(k)
       vals.push(input[k])
     }
-    data = keys.join(',') + '\n' + vals.join(',')
+    data = keys.join(',') + '\n' + vals.join(',') + '\n'
   }
 
   if (data !== undefined) {
