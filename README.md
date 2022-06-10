@@ -50,11 +50,26 @@ powershell:
 > "year,mstat`n2020,2" | node -e "require('./taxsim.js')()"
 ```
 
-#### via libv8, or [d8](https://v8.dev/docs/d8)
+#### via libv8
+
+[d8](https://v8.dev/docs/d8):
 
 ```bash
 $ printf "year,mstat\n2020,2\n" | d8 -e "load('./taxsim.js'); taxsim()"
 $ d8 -e "load('./taxsim.js'); function quit(){}; taxsim({year:2020,mstat:2}).then(console.log).catch(console.log)"
+```
+
+[V8 for R](https://cran.r-project.org/web/packages/V8/index.html):
+
+```r
+> download.file("https://taxsim.app/taxsim.wasm", "taxsim.wasm", mode="wb")
+> download.file("https://taxsim.app/taxsim.js", "taxsim.js")
+
+> library(V8)
+> ctx <- v8()
+> ctx$assign("wasmBinary", readBin("taxsim.wasm", raw(), file.info("taxsim.wasm")$size))
+> ctx$source("taxsim.js")
+> ctx$call("taxsim", JS("{year:2020, mstat:2}"), JS("{wasmBinary}"), await=TRUE)
 ```
 
 ### projects using `taxsim.js`
