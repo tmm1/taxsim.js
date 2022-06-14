@@ -75,3 +75,4 @@ let output = await taxsim({
 ### projects using `taxsim.js`
 
 - https://taxsim.app ([tmm1/taxsim.app](https://github.com/tmm1/taxsim.app))
+- https://www.shaneorr.io/r/usincometaxes/ ([shanejorr/usincometaxes](https://github.com/shanejorr/usincometaxes))
